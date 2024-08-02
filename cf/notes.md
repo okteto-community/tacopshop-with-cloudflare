@@ -1,0 +1,1 @@
+This example creates a CNAME of the endpoint, to show you how you can integrate your development environments with your existing DNS infrastructure.

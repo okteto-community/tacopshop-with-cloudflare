@@ -1,0 +1,3 @@
+Cloudflare R2 is a cloud storage service offered by Cloudflare, designed to provide an alternative to traditional cloud storage solutions like Amazon S3. Leveraging Cloudflare’s global network, R2 provides high availability and performance by distributing data across multiple locations. This ensures that data is served quickly and reliably to users around the world.
+
+Visithttps://developers.cloudflare.com/r2/ to learn more about how to use R2 to power your applications
