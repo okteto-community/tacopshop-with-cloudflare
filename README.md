@@ -26,11 +26,13 @@ Make sure this AWS IAM has permissions to create, read from, and delete the foll
 
 - SQS Queues
 
-Make sure this Cloudflare Key has permissions to create, read from, and delete the following services:
+Make sure your Cloudflare Key has the following permissions:
 
-- R2
-- Hosts
-- PageRules
+- Account:Workers R2 Storage:Edit
+- Account:Account Rulesets:Edit
+- Zone:DNS:Edit
+- Zone:Page Rules:Edit
+- Zone:Dyanmic Redirects:Edit
 
 > Alternatively if you are using Okteto Self-Hosted, you can configure your instance to use an AWS role instead of using an Acess Key and Secret Access Key.
 

@@ -95,34 +95,23 @@ provider "aws" {
   region  = "us-west-2"
 }
 
-resource "cloudflare_record" "www" {
+resource "cloudflare_record" "old" {
   zone_id = var.cloudflare_zone_id
   name    = var.cloudflare_record_name
-  value   = "127.0.0.1"
-  type    = "A"
-  proxied = true
+  value   = "okteto.com"
+  type    = "CNAME"
   allow_overwrite = true
 }
 
-resource "cloudflare_ruleset" "www" {
+resource "cloudflare_page_rule" "redirect-from-old" {
   zone_id = var.cloudflare_zone_id
-  name = var.cloudflare_record_name
-  kind        = "zone"
-  phase       = "http_request_dynamic_redirect"
-  rules {
-    action = "redirect"
-    action_parameters {
-      from_value {
-        status_code = 301
-        target_url {
-          value = var.cloudflare_record_value
-        }
-        preserve_query_string = false
-      }
+  target = "${var.cloudflare_record_name}.okteto.net"
+  priority = 1
+  actions {
+    forwarding_url {
+     status_code = "301"
+     url = "https://${var.cloudflare_record_value}"
     }
-    expression  = "(http.host eq \"${var.cloudflare_record_name}\")"
-    description = "Redirect visitors still using old URL"
-    enabled     = true
   }
 }
 

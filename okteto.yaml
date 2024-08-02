@@ -79,14 +79,14 @@ external:
     notes: README.md
     endpoints:
     - name: readme
-      url: https://github.com/okteto/external-resources-tf-aws
+      url: https://github.com/okteto/tacoshop-cloudflare
   sqs:
-    icon: dashboard
+    icon: database
     notes: queue/notes.md
     endpoints:
     - name: queue
   r2:
-    icon: dashboard
+    icon: database
     notes: r2/notes.md
     endpoints:
     - name: bucket
