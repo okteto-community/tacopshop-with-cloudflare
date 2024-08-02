@@ -10,7 +10,7 @@ This is an example of how to configure and deploy a development environment that
 1. An AWS account
 1. A Cloudflare account
 1. An Okteto account ([Sign-up](https://www.okteto.com/try-free/) for 30 day, self-hosted free trial)
-1. Create a set of IAM keys for your AWS account (If you are using Okteto Self-Hosted, you can directly assign an AWS Role)
+1. Create a set of IAM keys for your AWS account
 1. Create the following Okteto secrets:
 
         AWS_ACCESS_KEY_ID: The Access Key ID of your IAM user
@@ -40,8 +40,8 @@ Once this is configured, anyone with access to your Okteto instance will be able
 
 
 ```
-$ git clone https://github.com/okteto/external-resources-tf-aws
-$ cd external-resources-aws
+$ git clone https://github.com/okteto-community/tacopshop-with-cloudflare
+$ cd tacopshop-with-cloudflare
 $ okteto context use $OKTETO_URL
 $ okteto deploy
 ```

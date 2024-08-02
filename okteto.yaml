@@ -43,7 +43,7 @@ deploy:
   
   - name: Create the CF secret
     command: |
-      kubectl create secret generic cf-credentials --save-config --dry-run=client --from-literal=AWS_REGION=WNAM --from-literal=AWS_DEFAULT_REGION=WNAM --from-literal=AWS_SECRET_ACCESS_KEY=$CLOUDFLARE_SECRET_ACCESS_KEY --from-literal=AWS_ACCESS_KEY_ID=$CLOUDFLARE_ACCESS_KEY_ID=test --from-literal=AWS_ENDPOINT=https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com -o yaml | kubectl apply -f -
+      kubectl create secret generic cf-credentials --save-config --dry-run=client --from-literal=AWS_REGION=WNAM --from-literal=AWS_DEFAULT_REGION=WNAM --from-literal=AWS_SECRET_ACCESS_KEY=$CLOUDFLARE_SECRET_ACCESS_KEY --from-literal=AWS_ACCESS_KEY_ID=$CLOUDFLARE_ACCESS_KEY_ID --from-literal=AWS_ENDPOINT=https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com -o yaml | kubectl apply -f -
 
   - name: Create the AWS secret
     command: |
@@ -71,7 +71,7 @@ destroy:
       export KUBE_CONFIG_PATH="$KUBECONFIG"
       export KUBE_NAMESPACE=$OKTETO_NAMESPACE
       terraform init -input=false
-      terraform apply -input=false -var "cloudflare_api_token=$CLOUDFLARE_API_TOKEN" -var "cloudflare_zone_id=$CLOUDFLARE_ZONE_ID" -var "cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var "cloudflare_bucket_name=$resourceName" -var "cloudflare_queue_name=$resourceName" -auto-approve --destroy      terraform apply -input=false -var "bucket_name=$resourceName" -var "queue_name=$resourceName" -var "region=$region" -auto-approve --destroy
+      terraform apply -input=false -var "cloudflare_api_token=$CLOUDFLARE_API_TOKEN" -var "cloudflare_zone_id=$CLOUDFLARE_ZONE_ID" -var "cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var "cloudflare_bucket_name=$resourceName" -var "cloudflare_record_name=www-${OKTETO_NAMESPACE}" -var "cloudflare_record_value=menu-${OKTETO_NAMESPACE}.${OKTETO_DOMAIN}" -var "sqs_queue_name=$resourceName" -auto-approve --destroy
 
 external:
   readme:
